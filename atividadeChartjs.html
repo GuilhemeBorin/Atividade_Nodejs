@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="logo-removebg-preview.ico">
     <title>Chart JS</title>
 </head>
 <!-- 
@@ -15,20 +16,29 @@
     1ª - Definição da tela.
     2ª - Configurações.
     3ª - Onde as informações coletadas serão renderizadas.
+
+    *Apenas o grafico 1 foi comentado devido ao fato do gráfico 2 ser a mesma configuração, com alterações mínimas.*
 -->
 
 <body style="display: flex;">
-    <div>
-        <canvas id="myChart" style="position: relative; height: 40vh; width: 40vw;"></canvas>
-    </div>
+    <div class="DivGuardaTudo">
+        <h1 class="TitleCard">Borin´s Chart😄</h1>
+        <div class="BoxCard">
+            <div class="card">
+                <canvas id="myChart" style="position: relative; height: 40vh; width: 40vw;"></canvas>
+            </div>
 
-    <div>
-        <canvas id="myChart2" style="position: relative; height: 40vh; width: 40vw;"></canvas>
+            <div class="card">
+                <canvas id="myChart2" style="position: relative; height: 40vh; width: 40vw;"></canvas>
+            </div>
+        </div>
     </div>
 </body>
 
 </html>
 <script>
+    //GRÁFICO 1
+    //Definição das constanstes que exibirá os dados.
     const labels = [
         '12:00',
         '13:00',
@@ -36,15 +46,6 @@
         '15:00',
         '16:00',
         '17:00'
-    ];
-
-    const labelsBar = [
-        'Janeiro',
-        'Fevereiro',
-        'Março',
-        'Abril',
-        'Maio',
-        'Junho'
     ];
 
     const data = {
@@ -64,6 +65,31 @@
         ]
     }
 
+    //Define as configurações do gráfico.
+    const config = {
+        type: 'line', //gráfico do tipo linha
+        data: data,   //essa linha se refere a qual dado está sendo chamado.
+        options: {}
+    };
+
+    //Informa que o arquivo será exibido na "Tela" myChart.
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+
+
+    //GRÁFICO 2
+    const labelsBar = [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho'
+    ];
+
     const dataBar = {
         labels: labelsBar,
         datasets: [{
@@ -81,27 +107,51 @@
         ]
     }
 
-    //Define as configurações do gráfico.
-    const config = {
-        type: 'line',
-        data: data, //essa linha se refere a qual dado está sendo chamado.
-        options: {}
-    };
-
     const configBar = {
-        type: 'bar',
+        type: 'bar',   //gráfico do tipo barra
         data: dataBar,
         options: {}
     };
-
-    //Informa que o arquivo será exibido na "Tela" myChart.
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
 
     const myChart2 = new Chart(
         document.getElementById('myChart2'),
         configBar
     );
+
 </script>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: rgb(22, 74, 119);
+        font-family: "Courier New", monospace;
+        justify-content: center;
+    }
+
+    .TitleCard {
+        max-width: auto;
+        color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 50px;
+    }
+
+    .BoxCard {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .card {
+        background-color: whitesmoke;
+        max-height: 382px;
+        max-width: 664px;
+        padding: 15px;
+        border-radius: 10px;
+        flex: 1 0 400px;
+        margin: 20px;
+    }
+</style>
